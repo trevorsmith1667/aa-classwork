@@ -28,31 +28,26 @@ class PolyTreeNode
         raise "not child" if !self.children.include?(node)
 
     end 
-end
-
-class Searchable 
-    def dfs(value, target)
-        
+    
+    def dfs(target)
+        return self if self.value == target
+        self.children.each do |child|
+             search_result = child.dfs(target)
+            return search_result unless search_result.nil?
+        end
+        nil
     end 
 
-    def bfs
+    def bfs(target)
+        queue = [self]
+        until queue.empty?
+            elem = queue.shift
+            if elem.value == target
+                return elem
+            else
+                elem.children.each { |child| queue << child }
+            end
+        end
+        nil
     end 
-
-
 end 
-
-# n1 = PolyTreeNode.new("root1")
-# n2 = PolyTreeNode.new("root2")
-# n3 = PolyTreeNode.new("root3")
-
-# # connect n3 to n1
-# n3.parent = n1
-# # connect n3 to n2
-# n3.parent = n2
-
-# # this should work
-# raise "Bad parent=!" unless n3.parent == n2
-# raise "Bad parent=!" unless n2.children == [n3]
-
-# # this probably doesn't
-# raise "Bad parent=!" unless n1.children == []
