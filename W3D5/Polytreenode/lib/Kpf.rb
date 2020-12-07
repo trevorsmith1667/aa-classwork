@@ -8,18 +8,20 @@ class KnightPathFinder
     def initialize(start_pos)
         @root_node = PolyTreeNode.new(@start_pos)
         @considered_pos = [start_pos]
+        @start_pos = start_pos
         self.build_move_tree
-        p @considered_pos.length 
+        # p @considered_pos.length 
     end 
 
     def build_move_tree
         self.root_node = PolyTreeNode.new(start_pos)
         nodes = [root_node]
         until nodes.empty?
-            new_node  = nodes.shift
+            new_node = nodes.shift
             new_node_pos = new_node.value
             new_move_positions(new_node_pos).each do |move|
-               next_node = new_node.PolyTreeNode.add_child(move)
+               next_node = PolyTreeNode.new(move)
+               new_node.add_child(next_node)
                nodes << next_node
             end 
         end 
@@ -38,20 +40,32 @@ class KnightPathFinder
         valid_positions
     end 
 
-    def self.new_move_positions(pos)
-        new_positions = KnightPathFinder.valid_moves(pos)
-        puts "@considered_pos = #{@considered_pos}"
-
-        valid_pos = new_positions.reject { |position| @considered_pos.include?(position) }
-        valid_pos.each do |curr_pos|
-            @considered_pos << curr_pos if !@considered_pos.include?(curr_pos)
-        end
+    def new_move_positions(pos)
+        valid_pos = []
+        new_pos = KnightPathFinder.valid_moves(pos)
+        good_pos = []
+        new_pos.each do |position| 
+            if !@considered_pos.include?(position) 
+                good_pos << position 
+            end 
+        end 
+        good_pos.each do |curr_pos|
+             @considered_pos << curr_pos 
+             valid_pos << curr_pos
+            end
         valid_pos
     end 
+        # puts "@considered_pos = #{@considered_pos}"
+        # new_pos.reject { |position| @considered_pos.include?(position) }
+        # new_pos.each do |curr_pos|
+        #     considered_pos << curr_pos 
+        #     valid_pos << curr_pos
+        # end
+        # valid_pos
 end 
 
 
-#kpf = KnightPathFinder.new([0, 0]) 
-p KnightPathFinder.new_move_positions([1, 2])
+kpf = KnightPathFinder.new([0, 0]) 
+p kpf.new_move_positions([0, 0])
 
 
