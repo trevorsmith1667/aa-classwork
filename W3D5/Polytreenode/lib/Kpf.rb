@@ -3,6 +3,8 @@ require "byebug"
 class KnightPathFinder
     KNIGHT_MOVES =  [[2, 1], [-2, -1], [-2, 1], [2, -1], [1, 2], [-1, -2], [-1, 2], [1, -2]]
     attr_reader :start_pos
+    attr_accessor :considered_pos, :root_node
+
     def initialize(start_pos)
         @root_node = PolyTreeNode.new(@start_pos)
         @considered_pos = [start_pos]
@@ -25,27 +27,31 @@ class KnightPathFinder
 
     def self.valid_moves(pos)
         row, col = pos 
+        valid_positions = []
         
-        all_potential_moves = KNIGHT_MOVES.map do |x, y|
-            [row + x, col + y]
+        KNIGHT_MOVES.each do |(x, y)|
+            all_possible_positions = [row + x, col + y]
+            valid_positions << all_possible_positions if all_possible_positions.all? { |xy| xy >= 0 && xy <= 7 }
         end
 
-        all_potential_moves.reject do |moves|
-            moves.any? { |xy| xy < 0 || xy > 7 }
-        end
-        possible_moves
+
+        valid_positions
     end 
 
-    def new_move_positions(pos)
+    def self.new_move_positions(pos)
         new_positions = KnightPathFinder.valid_moves(pos)
+        puts "@considered_pos = #{@considered_pos}"
+
         valid_pos = new_positions.reject { |position| @considered_pos.include?(position) }
-        @considered_pos.concat(valid_pos)
+        valid_pos.each do |curr_pos|
+            @considered_pos << curr_pos if !@considered_pos.include?(curr_pos)
+        end
         valid_pos
     end 
 end 
 
 
 #kpf = KnightPathFinder.new([0, 0]) 
-KnightPathFinder.valid_moves([1,2])
+p KnightPathFinder.new_move_positions([1, 2])
 
 
