@@ -54,28 +54,3 @@ class PolyTreeNode
         nil
     end 
 end 
-class KnightPathFinder
-    KNIGHT_MOVES =  [[2, 1], [-2, -1], [-2, 1], [2, -1], [1, 2], [-1, -2], [-1, 2], [1, -2]]
-    attr_reader :start_pos
-    def initialize(start_pos)
-        @start_pos = KnightPathFinder.new([0,0]) 
-        @considered_pos = [start_pos]
-    end 
-
-    def self.build_move_tree
-        self.root_node = PolyTreeNode.new(start_pos)
-    end 
-
-    def self.valid_moves(pos)
-        row, col = pos 
-        possible_moves = []
-        KNIGHT_MOVES.each do |move|  
-            if !@considered_pos.include?(pos) && KNIGHT_MOVES.include?(pos)
-                possible_moves << [row, col]
-            end 
-        end 
-        possible_moves
-    end 
-
-    
-end 
