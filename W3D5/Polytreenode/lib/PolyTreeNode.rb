@@ -1,5 +1,4 @@
 require "byebug"
-require_relative "PolyTreeNode"
 
 class PolyTreeNode
     attr_reader :value, :parent
