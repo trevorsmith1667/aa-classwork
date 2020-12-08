@@ -40,32 +40,33 @@ class KnightPathFinder
         valid_positions
     end 
 
-    def new_move_positions(pos)
-        valid_pos = []
+    def new_move_positions(pos
         new_pos = KnightPathFinder.valid_moves(pos)
-        good_pos = []
-        new_pos.each do |position| 
-            if !@considered_pos.include?(position) 
-                good_pos << position 
-            end 
-        end 
-        good_pos.each do |curr_pos|
-             @considered_pos << curr_pos 
-             valid_pos << curr_pos
-            end
+        # puts "@considered_pos = #{@considered_pos}"
+        new_pos.reject { |position| @considered_pos.include?(position) }
+        new_pos.each do |curr_pos|
+            considered_pos << curr_pos 
+            valid_pos << curr_pos
+        end
         valid_pos
     end 
-        # puts "@considered_pos = #{@considered_pos}"
-        # new_pos.reject { |position| @considered_pos.include?(position) }
-        # new_pos.each do |curr_pos|
-        #     considered_pos << curr_pos 
-        #     valid_pos << curr_pos
-        # end
-        # valid_pos
+    #     good_pos = []
+
+    #     new_pos.each do |position| 
+    #         if !@considered_pos.include?(position) 
+    #             good_pos << position 
+    #         end 
+    #     end 
+    #     good_pos.each do |curr_pos|
+    #          @considered_pos << curr_pos 
+    #          valid_moves << curr_pos
+    #         end
+    #     valid_moves
+    # end 
 end 
 
 
 kpf = KnightPathFinder.new([0, 0]) 
-p kpf.new_move_positions([0, 0])
+p kpf.new_move_positions([1, 2])
 
 
