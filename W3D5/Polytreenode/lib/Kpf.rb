@@ -16,9 +16,11 @@ class KnightPathFinder
     def build_move_tree
         self.root_node = PolyTreeNode.new(start_pos)
         nodes = [root_node]
+        
         until nodes.empty?
             new_node = nodes.shift
             new_node_pos = new_node.value
+
             new_move_positions(new_node_pos).each do |move|
                next_node = PolyTreeNode.new(move)
                new_node.add_child(next_node)
@@ -32,10 +34,12 @@ class KnightPathFinder
         valid_positions = []
         
         KNIGHT_MOVES.each do |(x, y)|
-            all_possible_positions = [row + x, col + y]
-            valid_positions << all_possible_positions if all_possible_positions.all? { |xy| xy >= 0 && xy <= 7 }
-        end
+            possible_position = [row + x, col + y]
 
+            if possible_position.all? { |xy| xy >= 0 && xy <= 7 }
+                valid_positions << possible_position
+            end
+        end
 
         valid_positions
     end 
@@ -65,8 +69,31 @@ class KnightPathFinder
     # end 
 end 
 
+        good_pos
+    end
 
 kpf = KnightPathFinder.new([0, 0]) 
 p kpf.new_move_positions([1, 2])
+    def find_path(end_pos)
+        end_node = root_node.dfs(end_pos)
+
+        trace_path_back(end_node).reverse
+    end
+
+    def trace_path_back(end_node)
+        new_array = []
+
+        current = end_node
+        
+        while !current.nil?
+            new_array << current
+            current = current.parent
+        end
+        
+        new_array
+    end
+end 
 
 
+kpf = KnightPathFinder.new([0, 0]) 
+p kpf.find_path([7,7])
