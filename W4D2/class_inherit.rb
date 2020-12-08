@@ -1,5 +1,9 @@
-class Employee
+# require "byebug"
 
+class Employee
+    attr_reader :name, :title, :salary
+    attr_accessor :boss
+    # debugger
     def initialize(name, title, salary, boss = nil)
         @name = name
         @title = title
@@ -7,23 +11,32 @@ class Employee
         @boss = boss 
     end 
 
-    def bonus(salary, multiplier)
-        bonus = salary * multiplier
+    def boss(boss)
+        self.boss = boss if boss.nil?
+    end 
+
+    def bonus(multiplier)
+        # if title != "manager"
+        bonus = @salary * multiplier
+        # else 
+        #     bonus = self.total_salaries * multiplier
+
     end 
 end 
 
 class Manager < Employee
-    attr_accessor :assign_employ
-    def initialize
+    # self.name = Manager.new if self.title == "manager"
+    attr_accessor :add_employee, :total_salaries
+    def initialize(name, title, salary)
         super
         @assign_employ = []
+        @total_salaries = 0 
 
     end 
 
     def bonus
-        total_salaries = 0
         assign_employ.each {|employee| total_salaries += employee.salary}
-        super(total_salaries, multiplier)
+        super(multiplier)
     end 
 
     def add_employee(name)
@@ -32,7 +45,7 @@ class Manager < Employee
     end
 end 
 
-ned = Employee.new("Ned", "Founder", 1000000)
-darren = Employee.new("darren", "Manager", 500000, ned)
-# ned = Employee.new("Ned", "Founder", 1000000)
-# ned = Employee.new("Ned", "Founder", 1000000)
+ned = Manager.new("Ned", "Founder", 1000000)
+darren = Manager.new("darren", "Manager", 500000)
+
+
