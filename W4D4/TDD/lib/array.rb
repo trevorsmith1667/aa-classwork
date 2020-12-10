@@ -8,8 +8,12 @@ def two_sum(arr)
   output_arr = []
   arr.each_with_index  do |ele,idx1|
     arr.each_with_index do |ele2,idx2|
-      output_arr << [ ele, ele2 ].sort if (idx2 > idx1 && ele + ele2== 0)
+      if idx2 > idx1 
+        if ele + ele2 == 0 
+          output_arr << [ ele, ele2 ].sort 
+        end 
+      end 
     end 
   end
-  output_arr
+  p output_arr
 end
