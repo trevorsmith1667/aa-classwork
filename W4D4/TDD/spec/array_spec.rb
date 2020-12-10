@@ -3,6 +3,7 @@ require "array"
 
 describe Array do
     let(:my_arr) {[1, 2, 1, 3, 3]}
+    let(:my_neggy) {[-1, 1, 2, -2, 3,-3]}
     describe "#my_uniq" do
         it "checks array validity" do
             expect(my_arr).to be_a(Array)
@@ -14,7 +15,8 @@ describe Array do
     end 
 
     describe "#two_sum" do
-        it "when given any 2 elements whose sum amounts to 0, returns pairs in a inner array of 2D array"
+        it "when given any 2 elements whose sum amounts to 0, returns pairs in a inner array of 2D array" do
+          expect(two_sum(my_neggy)).to eq([[-1,1][-2,2][-3,3]])
         end
     
     end 
