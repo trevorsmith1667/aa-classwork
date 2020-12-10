@@ -15,5 +15,9 @@ def two_sum(arr)
       end 
     end 
   end
-  p output_arr
+  output_arr
+end
+
+def my_transpose two_d 
+  two_d.transpose
 end
