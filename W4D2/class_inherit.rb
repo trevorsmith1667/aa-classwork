@@ -8,16 +8,17 @@ class Employee
         @name = name
         @title = title
         @salary = salary
-        @boss = boss 
+        self.boss = boss
     end 
 
-    def boss(boss)
-        self.boss = boss if boss.nil?
+    def boss#(boss)
+        boss.add_employee(self) if !boss.nil? 
+        boss
     end 
 
     def bonus(multiplier)
         # if title != "manager"
-        bonus = @salary * multiplier
+        self.salary * multiplier
         # else 
         #     bonus = self.total_salaries * multiplier
 
@@ -26,26 +27,37 @@ end
 
 class Manager < Employee
     # self.name = Manager.new if self.title == "manager"
-    attr_accessor :add_employee, :total_salaries
-    def initialize(name, title, salary)
-        super
+    attr_accessor :add_employee, :total_salaries, :assign_employ
+    def initialize(name, title, salary, boss = nil)
+        super(name, title, salary, boss)
         @assign_employ = []
-        @total_salaries = 0 
-
     end 
 
-    def bonus
-        assign_employ.each {|employee| total_salaries += employee.salary}
-        super(multiplier)
+    def bonus(multiplier)
+         self.total_salaries * multiplier
     end 
 
     def add_employee(name)
-        assign_employ << name
-        @name
+        @assign_employ << name
+        name
+    end
+
+    def total_salaries
+        total_salaries = 0
+        self.assign_employ.each do |employee|
+            if employee.is_a?(Manager)
+                total_salaries += employee.salary + employee.total_salaries
+            else
+                total_salaries += employee.salary
+            end
+        end
+        total_salaries
     end
 end 
 
 ned = Manager.new("Ned", "Founder", 1000000)
-darren = Manager.new("darren", "Manager", 500000)
+darren = Manager.new("darren", "Manager", 78000, ned)
+franco = Employee.new("Franco", "Driver", 12000, darren)
+sonny = Employee.new("Sonny", "Driver", 10000, darren)
 
 
