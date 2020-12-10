@@ -44,7 +44,7 @@ class KnightPathFinder
         valid_positions
     end 
 
-    def new_move_positions(pos
+    def new_move_positions(pos)
         new_pos = KnightPathFinder.valid_moves(pos)
         # puts "@considered_pos = #{@considered_pos}"
         new_pos.reject { |position| @considered_pos.include?(position) }
