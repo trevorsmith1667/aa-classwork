@@ -54,6 +54,14 @@ describe Array do
         expect(towers[1].empty?).to be(true)
         expect(towers[2].empty?).to be(true)
       end
+
+      it "should take in 2D array with 3 subarrays and return the same" do 
+         expect(hanoi_tower(towers).length).to eq(3)
+      end 
+
+      # it "should return 3 arrays such that all elements from 1st array have moved to the 2nd or 3rd" do
+
+      # end 
     end
 end 
 

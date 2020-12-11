@@ -22,3 +22,12 @@ def my_transpose two_d
   two_d.transpose
 end
 
+def hanoi_tower(arr)
+  while arr[0].length > 0 
+    #pop arr[0].last and push onto other subarrs whose last element is larger or subarr is empty
+    if arr[1].last > arr[0].last
+      arr[1] << arr[0].pop
+    end 
+
+  end 
+end 
