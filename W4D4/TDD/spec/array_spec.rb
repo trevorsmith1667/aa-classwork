@@ -43,4 +43,17 @@ describe Array do
         expect(stock_picker(my_enron_stock)).to eq([1,4]) 
       end
     end
+
+    describe "#hanoi_tower" do 
+      subject(:towers){[[10,8,6,4,2],[],[]]}
+      let(:length){towers[0].length}
+      it "should take in 3 arrays, the first containing all the elements" do 
+        expect(towers[0].length).to eq(length)  
+      end 
+      it "the other two are empty" do
+        expect(towers[1].empty?).to be(true)
+        expect(towers[2].empty?).to be(true)
+      end
+    end
 end 
+
