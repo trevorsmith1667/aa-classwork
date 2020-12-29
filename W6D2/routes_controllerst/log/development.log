@@ -1,0 +1,4 @@
+  [1m[35m (247.4ms)[0m  [1m[35mCREATE DATABASE "routes_controllerst_development" ENCODING = 'unicode'[0m
+  ↳ /Users/trevor/.rbenv/versions/2.5.1/bin/rails:23
+  [1m[35m (66.4ms)[0m  [1m[35mCREATE DATABASE "routes_controllerst_test" ENCODING = 'unicode'[0m
+  ↳ /Users/trevor/.rbenv/versions/2.5.1/bin/rails:23
