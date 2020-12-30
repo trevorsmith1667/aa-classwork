@@ -5,11 +5,11 @@ class User < ApplicationRecord
     foreign_key: :artist_id, 
     class_name: :Artwork
 
-    has_many :viewers, 
+    has_many :shares, 
     foreign_key: :viewer_id, 
     class_name: :Artworkshare
 
     has_many :shared_artworks, 
-    through: :artworks, 
-    source: :shares
+    through: :shares, 
+    source: :artwork
 end
