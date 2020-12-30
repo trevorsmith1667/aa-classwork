@@ -13,6 +13,12 @@ Rails.application.routes.draw do
 
   resources :users, only: [:create, :show, :index, :update, :destroy]
   
-  resources :artworks, except: [:new, :edit]
+  resources :artworks, except: [:new, :edit, :index]
+
+  resources :artworkshares, only: [:create, :destroy]
+
+  resources :users do 
+      resources :artworks, only: :index
+  end 
 
 end

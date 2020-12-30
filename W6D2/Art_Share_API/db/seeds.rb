@@ -35,3 +35,5 @@ Artworkshare.destroy_all
 Artworkshare.create(artwork_id: art1.id, viewer_id: user2.id)
 
 Artworkshare.create(artwork_id: art2.id, viewer_id: user3.id)
+
+Artworkshare.create(artwork_id: art3.id, viewer_id: user1.id)
