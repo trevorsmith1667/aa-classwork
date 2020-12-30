@@ -12,7 +12,7 @@
 
 # Character.create(name: 'Luke', movie: movies.first)
 
-  
+User.destroy_all
 
 user1 = User.create(username: 'testuser1')
 
@@ -21,6 +21,8 @@ user2 = User.create(username: 'testuser2')
 user3 = User.create(username: 'testuser3')
 
   
+Artwork.destroy_all
+
 
 art1 = Artwork.create(title: 'Painting', image_url: 'google.com', artist_id: user1.id)
 
@@ -28,7 +30,7 @@ art2 = Artwork.create(title: 'Sculpture', image_url: 'art.com', artist_id: user2
 
 art3 = Artwork.create(title: 'Drawing', image_url: 'amazon.com', artist_id: user3.id)
 
-  
+Artworkshare.destroy_all
 
 Artworkshare.create(artwork_id: art1.id, viewer_id: user2.id)
 
