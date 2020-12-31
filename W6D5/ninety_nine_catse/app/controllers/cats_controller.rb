@@ -1,41 +1,41 @@
 class CatsController < ApplicationController
 
   def index
-    @kitties = Cat.all 
+    @cats = Cat.all 
     render :index
 
   end 
 
   def show 
-    @kitty = Cat.find(params[:id])
+    @cat = Cat.find(params[:id])
     render :show 
   end 
 
   def create 
-    @kitty = Cat.new(cat_params)
+    @cat = Cat.new(cat_params)
 
-    if @kitty.save 
+    if @cat.save 
         redirect_to cat_url(@kitty)
     else 
         render :new
   end 
 
   def update 
-    @kitty = Cat.find(params[:id])
+    @cat = Cat.find(params[:id])
 
-    if @kitty.update(cat_params)
+    if @cat.update(cat_params)
         redirect_to cat_url(@kitty)
     else 
         render :edit
   end 
 
   def new
-    @kitty = Cat.new
+    @cat = Cat.new
     render :new
   end 
 
   def edit 
-    @kitty = Cat.find(params[:id])
+    @cat = Cat.find(params[:id])
     render :edit
   end 
 

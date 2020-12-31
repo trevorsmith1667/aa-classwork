@@ -1,8 +1,8 @@
 <h1> This Is Our Index Page </h1> 
 <ul> 
-<% @kitties.each do |kitty| %>
-   <li><a href="<%= cat_url(kitty) %>"> <%= kitty.name %></a> </li>
-<%= render 'kitty', {kitty: kitty} %>
+<% @cats.each do |cat| %>
+   <li><a href="<%= cat_url(cat) %>"> <%= cat.name %></a> </li>
+<%= render 'cat', {cat: cat} %>
 </ul>
 <% end %>
 

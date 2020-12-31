@@ -1,31 +1,40 @@
 <h1>new kitty</h1>
-<form action>
-<!---<form action="/users" method="POST">--->
-<!---<form action="<%=users_url%>" method="POST">
-    <label>Username:
-        <input type="text" name="user[username]" value="<%= @user.username %>" />
+<form action="/cats">
+<form action="/cats" method="POST">
+<form action="<%=cats_url%>" method="POST">
+    <label> Name:
+        <input type="text" name="cat[name]" value="<%= @cat.name %>" />
     </label>
-
     <br>
 
     <label>Age:
-        <input type="text" name="user[age]" value="<%= @user.age %>">
+        <input type="text" name="cat[age]" value="<%= @cat.age %>">
     </label>
 
     <br>
 
-    <label>Political affiliation:
-        <input type="text" name="user[political_affiliation]"value="<%= @user.political_affiliation %>" >
+    <label>Color:
+        <input type="dropdown" name="cat[color]"value="<%= COLORS %>" >
     </label>
 
     <br>
 
-    <label>Email:
-        <input type="text" name="user[email]" value="<%= @user.email %>">
+    <label>Sex:
+        <input type="radio" name="cat[sex]" value="<%= %W(M F) %>">
+    </label>
+     
+     <br>
+
+    <label> Birthdate: 
+        <input type="date" name="cat[birth_date]" value= <%=@cat.birth_date%>>
+    </label> 
+
+    <label> Description: 
+        <input type="textarea" name="cat[description]" value= <%= @cat.description%>>
     </label>
 
     <br>
 
     <input type="submit" value="Create user">
 </form>--->
-<%= render "form", {kitty: @kitty, type: :new} %>
+<%= render "form", {cat: @cat, type: :new} %>
