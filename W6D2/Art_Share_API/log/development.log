@@ -2389,3 +2389,65 @@ LINE 1: ..."users".* FROM "users" WHERE (users.username like ["username...
 : SELECT "users".* FROM "users" WHERE (users.username like ["username", "Trevor"]):
   app/controllers/users_controller.rb:7:in `index'
 
+Started GET "/users?username=Trevor" for ::1 at 2020-12-30 17:38:04 -0800
+  [1m[35m (2.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/trevor/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.4/lib/active_record/log_subscriber.rb:98
+Processing by UsersController#index as */*
+  Parameters: {"username"=>"Trevor"}
+  [1m[36mUser Load (3.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (users.username like ["username", "Trevor"])[0m
+  ↳ app/controllers/users_controller.rb:7
+Completed 500 Internal Server Error in 10962ms (ActiveRecord: 3.0ms)
+
+
+
+ActiveRecord::StatementInvalid - PG::SyntaxError: ERROR:  syntax error at or near "["
+LINE 1: ..."users".* FROM "users" WHERE (users.username like ["username...
+                                                             ^
+: SELECT "users".* FROM "users" WHERE (users.username like ["username", "Trevor"]):
+  app/controllers/users_controller.rb:7:in `index'
+
+Started GET "/users?username=Trevor" for ::1 at 2020-12-30 17:39:17 -0800
+Processing by UsersController#index as */*
+  Parameters: {"username"=>"Trevor"}
+  [1m[36mUser Load (3.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (users.username like Trevor)[0m
+  ↳ app/controllers/users_controller.rb:9
+Completed 500 Internal Server Error in 5783ms (ActiveRecord: 3.8ms)
+
+
+
+ActiveRecord::StatementInvalid - PG::UndefinedColumn: ERROR:  column "trevor" does not exist
+LINE 1: ...CT "users".* FROM "users" WHERE (users.username like Trevor)
+                                                                ^
+: SELECT "users".* FROM "users" WHERE (users.username like Trevor):
+  app/controllers/users_controller.rb:9:in `index'
+
+Started GET "/users?username=Trevor" for ::1 at 2020-12-30 17:40:07 -0800
+Processing by UsersController#index as */*
+  Parameters: {"username"=>"Trevor"}
+  [1m[36mUser Load (2.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (users.username = Trevor)[0m
+  ↳ app/controllers/users_controller.rb:9
+Completed 500 Internal Server Error in 8774ms (ActiveRecord: 2.3ms)
+
+
+
+ActiveRecord::StatementInvalid - PG::UndefinedColumn: ERROR:  column "trevor" does not exist
+LINE 1: ...ELECT "users".* FROM "users" WHERE (users.username = Trevor)
+                                                                ^
+: SELECT "users".* FROM "users" WHERE (users.username = Trevor):
+  app/controllers/users_controller.rb:9:in `index'
+
+Started GET "/users?username=Trevor" for ::1 at 2020-12-30 17:41:36 -0800
+Processing by UsersController#index as */*
+  Parameters: {"username"=>"Trevor"}
+  [1m[36mUser Load (4.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1[0m  [["username", "Trevor"]]
+  ↳ app/controllers/users_controller.rb:9
+Completed 200 OK in 2883ms (Views: 11.4ms | ActiveRecord: 27.2ms)
+
+
+Started GET "/users" for ::1 at 2020-12-30 17:46:08 -0800
+Processing by UsersController#index as */*
+  [1m[36mUser Load (2.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:11
+Completed 200 OK in 3849ms (Views: 4.8ms | ActiveRecord: 2.4ms)
+
+

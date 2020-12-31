@@ -3,7 +3,9 @@ class UsersController < ApplicationController
     def index
         debugger
         if request.query_string.present?
-            user = User.where("users.username like #{request.query_string.split('=')}")
+            query = request.query_string.split('=').last
+
+            user = User.where(username: query)
             render json: user
         else
              render json: User.all
