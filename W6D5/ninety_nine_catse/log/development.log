@@ -1,0 +1,4 @@
+  [1m[35m (308.0ms)[0m  [1m[35mCREATE DATABASE "ninety_nine_catse_development" ENCODING = 'unicode'[0m
+  ↳ /Users/trevor/.rbenv/versions/2.5.1/bin/rails:23
+  [1m[35m (106.0ms)[0m  [1m[35mCREATE DATABASE "ninety_nine_catse_test" ENCODING = 'unicode'[0m
+  ↳ /Users/trevor/.rbenv/versions/2.5.1/bin/rails:23
