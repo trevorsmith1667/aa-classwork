@@ -1,7 +1,14 @@
 class UsersController < ApplicationController
 
     def index
-        render json: User.all
+        debugger
+        if request.query_string.present?
+            user = User.where("users.username like #{request.query_string.split('=')}")
+            render json: user
+        else
+             render json: User.all
+          
+        end 
     end 
 
     def show 
@@ -18,6 +25,7 @@ class UsersController < ApplicationController
     end 
 
     def update 
+        debugger
         user = User.find(params[:id])
 
         if user.update(user_params)

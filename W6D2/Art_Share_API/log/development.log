@@ -2157,3 +2157,235 @@ Processing by CommentsController#index as */*
 Completed 200 OK in 20589ms (Views: 16.8ms | ActiveRecord: 0.4ms)
 
 
+Started GET "/users" for ::1 at 2020-12-30 16:39:34 -0800
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/trevor/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.4/lib/active_record/log_subscriber.rb:98
+
+ActiveRecord::PendingMigrationError - Migrations are pending. To resolve this issue, run:
+        bin/rails db:migrate RAILS_ENV=development:
+
+  [1m[35m (2.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/trevor/.rbenv/versions/2.5.1/bin/rails:23
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1368175953127476885)[0m
+  ↳ /Users/trevor/.rbenv/versions/2.5.1/bin/rails:23
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/trevor/.rbenv/versions/2.5.1/bin/rails:23
+Migrating to CreateComments (20201230233503)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/trevor/.rbenv/versions/2.5.1/bin/rails:23
+  [1m[35m (34.1ms)[0m  [1m[35mCREATE TABLE "comments" ("id" bigserial primary key, "user_id" integer NOT NULL, "artwork_id" integer NOT NULL, "body" text NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20201230233503_create_comments.rb:3
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE  INDEX  "index_comments_on_user_id" ON "comments"  ("user_id")[0m
+  ↳ db/migrate/20201230233503_create_comments.rb:11
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE  INDEX  "index_comments_on_artwork_id" ON "comments"  ("artwork_id")[0m
+  ↳ db/migrate/20201230233503_create_comments.rb:12
+  [1m[36mActiveRecord::SchemaMigration Create (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201230233503"]]
+  ↳ /Users/trevor/.rbenv/versions/2.5.1/bin/rails:23
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /Users/trevor/.rbenv/versions/2.5.1/bin/rails:23
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/trevor/.rbenv/versions/2.5.1/bin/rails:23
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/trevor/.rbenv/versions/2.5.1/bin/rails:23
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /Users/trevor/.rbenv/versions/2.5.1/bin/rails:23
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(1368175953127476885)[0m
+  ↳ /Users/trevor/.rbenv/versions/2.5.1/bin/rails:23
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/trevor/.rbenv/versions/2.5.1/bin/rails:23
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/trevor/.rbenv/versions/2.5.1/bin/rails:23
+Started GET "/users" for ::1 at 2020-12-30 16:41:19 -0800
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/trevor/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.4/lib/active_record/log_subscriber.rb:98
+Processing by UsersController#index as */*
+  [1m[36mUser Load (4.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:7
+Completed 200 OK in 14491ms (Views: 7.8ms | ActiveRecord: 25.7ms)
+
+
+Started PATCH "/users/7" for ::1 at 2020-12-30 16:42:04 -0800
+Processing by UsersController#update as */*
+  Parameters: {"user"=>{"username"=>"Trevor"}, "id"=>"7"}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:28
+  [1m[36mUser Exists (2.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "Trevor"], ["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:28
+  [1m[36mUser Update (1.2ms)[0m  [1m[33mUPDATE "users" SET "username" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["username", "Trevor"], ["updated_at", "2020-12-31 00:42:17.164790"], ["id", 7]]
+  ↳ app/controllers/users_controller.rb:28
+  [1m[35m (4.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:28
+Redirected to http://localhost:3000/users/7
+Completed 302 Found in 12409ms (ActiveRecord: 11.2ms)
+
+
+Started GET "/users/7" for ::1 at 2020-12-30 16:42:17 -0800
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"7"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.7ms)
+
+
+Started PATCH "/users/7" for ::1 at 2020-12-30 16:42:33 -0800
+Processing by UsersController#update as */*
+  Parameters: {"user"=>{"username"=>"Colin"}, "id"=>"7"}
+  [1m[36mUser Load (7.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:28
+  [1m[36mUser Exists (1.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "Colin"], ["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:28
+  [1m[36mUser Update (1.6ms)[0m  [1m[33mUPDATE "users" SET "username" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["username", "Colin"], ["updated_at", "2020-12-31 00:43:24.256930"], ["id", 7]]
+  ↳ app/controllers/users_controller.rb:28
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:28
+Redirected to http://localhost:3000/users/7
+Completed 302 Found in 50924ms (ActiveRecord: 11.5ms)
+
+
+Started GET "/users/7" for ::1 at 2020-12-30 16:43:24 -0800
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"7"}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 1.3ms)
+
+
+Started PATCH "/users/7?user[username]=Trevor" for ::1 at 2020-12-30 16:44:54 -0800
+Processing by UsersController#update as */*
+  Parameters: {"user"=>{"username"=>"Trevor"}, "id"=>"7"}
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:28
+  [1m[36mUser Exists (1.8ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "Trevor"], ["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:28
+  [1m[36mUser Update (1.9ms)[0m  [1m[33mUPDATE "users" SET "username" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["username", "Trevor"], ["updated_at", "2020-12-31 00:45:15.844433"], ["id", 7]]
+  ↳ app/controllers/users_controller.rb:28
+  [1m[35m (6.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:28
+Redirected to http://localhost:3000/users/7
+Completed 302 Found in 20920ms (ActiveRecord: 13.8ms)
+
+
+Started GET "/users/7" for ::1 at 2020-12-30 16:45:15 -0800
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"7"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/users?username=Trevor" for ::1 at 2020-12-30 16:50:09 -0800
+Processing by UsersController#index as */*
+  Parameters: {"username"=>"Trevor"}
+Completed 500 Internal Server Error in 9685ms (ActiveRecord: 0.0ms)
+
+
+
+NoMethodError - undefined method `present' for "username=Trevor":String
+Did you mean?  present?
+               presence
+               prepend:
+  app/controllers/users_controller.rb:5:in `index'
+
+Started GET "/users?username=Trevor" for ::1 at 2020-12-30 16:50:45 -0800
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/trevor/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.4/lib/active_record/log_subscriber.rb:98
+Processing by UsersController#index as */*
+  Parameters: {"username"=>"Trevor"}
+  [1m[36mUser Load (2.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:6
+Completed 200 OK in 5518ms (Views: 7.1ms | ActiveRecord: 25.1ms)
+
+
+Started GET "/users?username=Trevor" for ::1 at 2020-12-30 16:56:40 -0800
+Processing by UsersController#index as */*
+  Parameters: {"username"=>"Trevor"}
+Completed 500 Internal Server Error in 7530ms (ActiveRecord: 0.0ms)
+
+
+
+NameError - undefined local variable or method `query_string' for #<UsersController:0x00007fa600302e58>:
+  app/controllers/users_controller.rb:6:in `index'
+
+Started GET "/users?username=Trevor" for ::1 at 2020-12-30 16:57:40 -0800
+Processing by UsersController#index as */*
+  Parameters: {"username"=>"Trevor"}
+  [1m[36mUser Load (11.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (users.username like username=Trevor)[0m
+  ↳ app/controllers/users_controller.rb:7
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 11.1ms)
+
+
+
+ActiveRecord::StatementInvalid - PG::UndefinedColumn: ERROR:  column "trevor" does not exist
+LINE 1: ...".* FROM "users" WHERE (users.username like username=Trevor)
+                                                                ^
+: SELECT "users".* FROM "users" WHERE (users.username like username=Trevor):
+  app/controllers/users_controller.rb:7:in `index'
+
+Started GET "/users?username=Trevor" for ::1 at 2020-12-30 16:59:03 -0800
+Processing by UsersController#index as */*
+  Parameters: {"username"=>"Trevor"}
+  [1m[36mUser Load (3.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE ({"username"=>"Trevor", "controller"=>"users", "action"=>"index"} like username=Trevor)[0m
+  ↳ app/controllers/users_controller.rb:7
+Completed 500 Internal Server Error in 7475ms (ActiveRecord: 3.2ms)
+
+
+
+ActiveRecord::StatementInvalid - PG::SyntaxError: ERROR:  syntax error at or near "{"
+LINE 1: SELECT "users".* FROM "users" WHERE ({"username"=>"Trevor", ...
+                                             ^
+: SELECT "users".* FROM "users" WHERE ({"username"=>"Trevor", "controller"=>"users", "action"=>"index"} like username=Trevor):
+  app/controllers/users_controller.rb:7:in `index'
+
+Started GET "/users?username=Trevor" for ::1 at 2020-12-30 17:00:23 -0800
+Processing by UsersController#index as */*
+  Parameters: {"username"=>"Trevor"}
+  [1m[36mUser Load (2.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (users.username like =)[0m
+  ↳ app/controllers/users_controller.rb:7
+Completed 500 Internal Server Error in 7310ms (ActiveRecord: 2.6ms)
+
+
+
+ActiveRecord::StatementInvalid - PG::SyntaxError: ERROR:  syntax error at or near "="
+LINE 1: SELECT "users".* FROM "users" WHERE (users.username like =)
+                                                                 ^
+: SELECT "users".* FROM "users" WHERE (users.username like =):
+  app/controllers/users_controller.rb:7:in `index'
+
+Started GET "/users?username=Trevor" for ::1 at 2020-12-30 17:00:43 -0800
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/trevor/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.4/lib/active_record/log_subscriber.rb:98
+Processing by UsersController#index as */*
+  Parameters: {"username"=>"Trevor"}
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (users.username like =)[0m
+  ↳ app/controllers/users_controller.rb:7
+Completed 500 Internal Server Error in 6616ms (ActiveRecord: 2.1ms)
+
+
+
+ActiveRecord::StatementInvalid - PG::SyntaxError: ERROR:  syntax error at or near "="
+LINE 1: SELECT "users".* FROM "users" WHERE (users.username like =)
+                                                                 ^
+: SELECT "users".* FROM "users" WHERE (users.username like =):
+  app/controllers/users_controller.rb:7:in `index'
+
+Started GET "/users?username=Trevor" for ::1 at 2020-12-30 17:03:34 -0800
+Processing by UsersController#index as */*
+  Parameters: {"username"=>"Trevor"}
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (users.username like ["username", "Trevor"])[0m
+  ↳ app/controllers/users_controller.rb:7
+Completed 500 Internal Server Error in 15676ms (ActiveRecord: 1.7ms)
+
+
+
+ActiveRecord::StatementInvalid - PG::SyntaxError: ERROR:  syntax error at or near "["
+LINE 1: ..."users".* FROM "users" WHERE (users.username like ["username...
+                                                             ^
+: SELECT "users".* FROM "users" WHERE (users.username like ["username", "Trevor"]):
+  app/controllers/users_controller.rb:7:in `index'
+
