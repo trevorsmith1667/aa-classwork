@@ -1,0 +1,20 @@
+<h1> This Is Our Index Page </h1> 
+<ul> 
+<% @kitties.each do |kitty| %>
+<%= render 'kitty', {kitty: kitty} %>
+</ul>
+<% end %>
+
+
+
+
+
+<!---<ul>
+   >-<li><a href=<%="/users/#{user.id}"%>><%= user.username %></a></li>--->
+   <!---<li><a href=<%= user_url(user.id) %>><%= user.username %></a></li>
+   <li><%= user.age %></li>
+   <li><%= user.email %></li>
+   <li><%= user.political_affiliation %></li>--->
+   <!---<ul><%= render "user", {user: user} %>
+</ul>--->
+
