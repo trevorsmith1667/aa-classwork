@@ -1,10 +1,10 @@
-require 'actionview'
+require 'action_view'
 class Cat < ApplicationRecord
-ActionView::Helpers::DateHelper
+    include ActionView::Helpers::DateHelper
     
     COLORS = ["black", "orange", "white","blue"]
      
-    validates :sex, inclusion:%W(M F) 
+    validates :sex, inclusion:["M","F"]
     validates :birth_date, :color, :name, :sex, presence: true
     validates :color, inclusion: COLORS
 

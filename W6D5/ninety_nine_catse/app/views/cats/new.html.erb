@@ -14,13 +14,17 @@
     <br>
 
     <label>Color:
-        <input type="dropdown" name="cat[color]"value="<%= COLORS %>" >
+        <select name="cat[color]">
+        <option disabled selected>--Choose Color--</option>
+        <%Cat::COLORS.each do |color|%>
+            <option value="<%=color%>"> <%=color%></option>
+        <%end%>
     </label>
 
     <br>
 
     <label>Sex:
-        <input type="radio" name="cat[sex]" value="<%= %W(M F) %>">
+        <input type="radio" name="cat[sex]" value="<%= ["M","F"] %>">
     </label>
      
      <br>

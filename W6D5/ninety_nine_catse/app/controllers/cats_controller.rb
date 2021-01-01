@@ -18,6 +18,7 @@ class CatsController < ApplicationController
         redirect_to cat_url(@kitty)
     else 
         render :new
+    end
   end 
 
   def update 
@@ -27,6 +28,7 @@ class CatsController < ApplicationController
         redirect_to cat_url(@kitty)
     else 
         render :edit
+    end
   end 
 
   def new
