@@ -1,0 +1,40 @@
+<h1>new kitty</h1>
+<form action="/cats">
+<form action="/cats" method="POST">
+<form action="<%=cats_url%>" method="POST">
+    <label> Name:
+        <input type="text" name="cat[name]" value="<%= @cat.name %>" />
+    </label>
+    <br>
+
+    <label>Age:
+        <input type="text" name="cat[age]" value="<%= @cat.age %>">
+    </label>
+
+    <br>
+
+    <label>Color:
+        <input type="dropdown" name="cat[color]"value="<%= COLORS %>" >
+    </label>
+
+    <br>
+
+    <label>Sex:
+        <input type="radio" name="cat[sex]" value="<%= %W(M F) %>">
+    </label>
+     
+     <br>
+
+    <label> Birthdate: 
+        <input type="date" name="cat[birth_date]" value= <%=@cat.birth_date%>>
+    </label> 
+
+    <label> Description: 
+        <input type="textarea" name="cat[description]" value= <%= @cat.description%>>
+    </label>
+
+    <br>
+
+    <input type="submit" value="Create user">
+</form>--->
+<%= render "form", {cat: @cat, type: :new} %>
