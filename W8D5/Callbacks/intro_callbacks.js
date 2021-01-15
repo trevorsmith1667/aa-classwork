@@ -9,20 +9,29 @@ class Clock {
         this.min = current_date.getMinutes();
         this.sec = current_date.getSeconds();
         
+      setInterval(this._tick.bind(this), 1000);
         }
-  
+    
     printTime() {
       // Format the time in HH:MM:SS
       // Use console.log to print it.
       let timeString = `${this.hr} : ${this.min} : ${this.sec}`;
       console.log(timeString)
     }
-  
+    // military time  12am == 00:00:00        11:59pm == 23:59:59
     _tick() {
       // 1. Increment the time by one second.
       // 2. Call printTime.
-    setInterval(this.printTime.bind(this), 1000)
-
+      this.sec++;
+      if (this.sec === 60) {
+        this.min++;
+        this.sec = 0;
+      }
+      if (this.min === 60){
+        this.hr = (this.hr + 1) % 24;
+        this.min = 0;
+      }
+      this.printTime();
     // setInterval(function printTime(){
     //     let timeString = `${this.hr} : ${this.min} : ${this.sec}`;
     //     console.log(timeString)
@@ -32,4 +41,4 @@ class Clock {
   
   const clock = new Clock();
 
-  clock._tick();
+  // clock._tick();
