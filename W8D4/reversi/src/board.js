@@ -87,8 +87,8 @@ Board.prototype.isOccupied = function (pos) {
 Board.prototype._positionsToFlip = function(pos, color, dir, piecesToFlip){
   if (!piecesToFlip){
     piecesToFlip = [];
-  } //else {piecesToFlip.push(pos)
-  //}
+  } else {piecesToFlip.push(pos)
+  }
   //console.log(pos)
   console.log("dir", dir)
   console.log("pos", pos)
@@ -101,11 +101,10 @@ Board.prototype._positionsToFlip = function(pos, color, dir, piecesToFlip){
 
 
   let pieces = piecesToFlip;
-
-  pieces = pieces.concat(this._positionsToFlip(new_pos,color,dir,pieces))
-  return pieces;
   
-  // return this._positionsToFlip(new_pos,color,dir,pieces)
+  return this._positionsToFlip(new_pos,color,dir,pieces)
+  // pieces = pieces.concat(this._positionsToFlip(new_pos,color,dir,pieces))
+  // return pieces;
  
  
 };
