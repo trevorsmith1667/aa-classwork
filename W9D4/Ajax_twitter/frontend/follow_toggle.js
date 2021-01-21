@@ -23,14 +23,13 @@ class FollowToggle {
         this.el.on("click", (event)=> {
             event.preventDefault();
             if (this.followState === "followed") {
-                APIUtil.unfollowUser(this.userId)
-                    .then(() => {
+                APIUtil.unfollowUser(toggled.userId).then(() => {
                         toggled.followState = 'unfollowed';
                         toggled.render();
                     })
             } else if (this.followState === "unfollowed") {
-                APIUtil.followUser(this.userId)
-                    .then(() => {
+                debugger
+                APIUtil.followUser(toggled.userId).then(() => {
                         toggled.followState = 'followed'
                         toggled.render();
                     })

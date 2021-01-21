@@ -5,9 +5,28 @@
 /*!******************************!*\
   !*** ./frontend/api_util.js ***!
   \******************************/
-/***/ (() => {
+/***/ ((module) => {
 
-throw new Error("Module parse failed: Unexpected token (11:4)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n|     }\n| \n>     unfollowUser: id => {\n|         $.ajax({\n|             url: `/users/${this.userId}/follow`,");
+const APIUtil = {
+
+    followUser: id => {
+        $.ajax({
+            url: `/users/${id}/follow`,
+            dataType: 'JSON',
+            method: 'DELETE',
+        })
+    },
+
+    unfollowUser: id => {
+        $.ajax({
+            url: `/users/${id}/follow`,
+            dataType: 'JSON',
+            method: 'DELETE',
+        })
+    }
+    
+}
+module.exports = APIUtil;
 
 /***/ }),
 
@@ -42,14 +61,13 @@ class FollowToggle {
         this.el.on("click", (event)=> {
             event.preventDefault();
             if (this.followState === "followed") {
-                APIUtil.unfollowUser(this.userId)
-                    .then(() => {
+                APIUtil.unfollowUser(toggled.userId).then(() => {
                         toggled.followState = 'unfollowed';
                         toggled.render();
                     })
             } else if (this.followState === "unfollowed") {
-                APIUtil.followUser(this.userId)
-                    .then(() => {
+                debugger
+                APIUtil.followUser(toggled.userId).then(() => {
                         toggled.followState = 'followed'
                         toggled.render();
                     })
