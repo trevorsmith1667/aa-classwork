@@ -1,11 +1,23 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./frontend/api_util.js":
+/*!******************************!*\
+  !*** ./frontend/api_util.js ***!
+  \******************************/
+/***/ (() => {
+
+throw new Error("Module parse failed: Unexpected token (11:4)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n|     }\n| \n>     unfollowUser: id => {\n|         $.ajax({\n|             url: `/users/${this.userId}/follow`,");
+
+/***/ }),
+
 /***/ "./frontend/follow_toggle.js":
 /*!***********************************!*\
   !*** ./frontend/follow_toggle.js ***!
   \***********************************/
-/***/ ((module) => {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+const APIUtil = __webpack_require__(/*! ./api_util */ "./frontend/api_util.js");
 
 class FollowToggle {
     constructor(el){
@@ -18,30 +30,29 @@ class FollowToggle {
     }
 
     render(){
-        if (this.followState === "Follow!") {
+        if (this.followState === "followed") {
             this.el.html("Unfollow!");
-        } else if (this.followState === "Unfollow!") {
+        } else if (this.followState === "unfollowed") {
             this.el.html("Follow!");
         }
     }
 
     handleClick() {
+        const toggled = this;
         this.el.on("click", (event)=> {
             event.preventDefault();
-            if (this.followState === "Follow!") {
-                $.ajax({
-                    url: '/users/:user_id/follow',
-                    dataType: 'JSON',
-                    method: 'DELETE',
-                })
-                .then(this.render())
-            } else if (this.followState === "Unfollow!") {
-                $.ajax({
-                    url: '/users/:user_id/follow',
-                    dataType: 'JSON',
-                    method: 'POST',
-                })
-                .then(this.render())
+            if (this.followState === "followed") {
+                APIUtil.unfollowUser(this.userId)
+                    .then(() => {
+                        toggled.followState = 'unfollowed';
+                        toggled.render();
+                    })
+            } else if (this.followState === "unfollowed") {
+                APIUtil.followUser(this.userId)
+                    .then(() => {
+                        toggled.followState = 'followed'
+                        toggled.render();
+                    })
             }  
         })
         // event.preventDefault();
