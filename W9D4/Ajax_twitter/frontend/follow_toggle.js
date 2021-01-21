@@ -12,9 +12,17 @@ class FollowToggle {
 
     render(){
         if (this.followState === "followed") {
+            this.el.prop('disabled', false);
             this.el.html("Unfollow!");
         } else if (this.followState === "unfollowed") {
+            this.el.prop('disabled', false);
             this.el.html("Follow!");
+        } else if (this.followState === 'following') {
+            this.el.prop('disabled', true);
+            this.el.html("DON'T TOUCH");
+        } else if (this.followState === 'unfollowing') {
+            this.el.prop('disabled', true);
+            this.el.html("DON'T TOUCH");
         }
     }
 
@@ -23,13 +31,17 @@ class FollowToggle {
         this.el.on("click", (event)=> {
             event.preventDefault();
             if (this.followState === "followed") {
-                APIUtil.unfollowUser(toggled.userId).then(() => {
+                this.followState = 'unfollowing';
+                this.render();
+                APIUtil.unfollowUser(this.userId).then(() => {
                         toggled.followState = 'unfollowed';
                         toggled.render();
                     })
             } else if (this.followState === "unfollowed") {
-                debugger
-                APIUtil.followUser(toggled.userId).then(() => {
+                // debugger
+                this.followState = 'following';
+                this.render();
+                APIUtil.followUser(this.userId).then(() => {
                         toggled.followState = 'followed'
                         toggled.render();
                     })

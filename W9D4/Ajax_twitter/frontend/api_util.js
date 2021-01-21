@@ -1,15 +1,15 @@
 const APIUtil = {
 
     followUser: id => {
-        $.ajax({
+        return $.ajax({
             url: `/users/${id}/follow`,
             dataType: 'JSON',
-            method: 'DELETE',
+            method: 'POST',
         })
     },
 
     unfollowUser: id => {
-        $.ajax({
+        return $.ajax({
             url: `/users/${id}/follow`,
             dataType: 'JSON',
             method: 'DELETE',
