@@ -17,4 +17,4 @@
   </form>
 <% end %>-->
 
-<button class="follow-toggle" data-user-id="" data-initial-follow-state=""></button>
+<button class="follow-toggle" data-user-id="<%= current_user.id %>" data-initial-follow-state="<%=current_user.follows?(user) ?  'Unfollow!' : 'Follow!' %>"></button>
