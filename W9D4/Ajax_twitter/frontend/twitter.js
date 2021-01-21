@@ -1,8 +1,8 @@
 const FollowToggle = require("./follow_toggle")
 
-const FollowToggle = require ("./follow_toggle")
+
 $() => {
-    $("follow-toggle").forEach(() => {
-        
+    $("follow-toggle").each((index, button) => {
+        new FollowToggle(button);
     })
 }
