@@ -6,8 +6,8 @@ class FollowToggle {
         this.userId = this.el.data("user-id");
         this.followState = this.el.data("initial-follow-state");
         this.render();
-        this.handleClick()
-        //this.el.on("click", this.handleClick(el))
+        //this.handleClick();
+        this.el.on("click", this.handleClick.bind(this))
     }
 
     render(){
@@ -26,9 +26,9 @@ class FollowToggle {
         }
     }
 
-    handleClick() {
+    handleClick(event) {
         const toggled = this;
-        this.el.on("click", (event)=> {
+        //this.el.on("click", (event)=> {
             event.preventDefault();
             if (this.followState === "followed") {
                 this.followState = 'unfollowing';
@@ -46,7 +46,7 @@ class FollowToggle {
                         toggled.render();
                     })
             }  
-        })
+        //})
         // event.preventDefault();
         // if (this.followState === "Follow!") {
         //     $.ajax({

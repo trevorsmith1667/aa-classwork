@@ -23,6 +23,15 @@ const APIUtil = {
             dataType: 'JSON',
             method: 'DELETE',
         })
+    },
+
+    searchUsers: queryVal => {
+        return $.ajax({
+            url: '/users/search',
+            dataType: 'JSON',
+            data: queryVal,
+            method: 'GET'
+        })
     }
     
 }
@@ -44,8 +53,8 @@ class FollowToggle {
         this.userId = this.el.data("user-id");
         this.followState = this.el.data("initial-follow-state");
         this.render();
-        this.handleClick()
-        //this.el.on("click", this.handleClick(el))
+        //this.handleClick();
+        this.el.on("click", this.handleClick.bind(this))
     }
 
     render(){
@@ -64,9 +73,9 @@ class FollowToggle {
         }
     }
 
-    handleClick() {
+    handleClick(event) {
         const toggled = this;
-        this.el.on("click", (event)=> {
+        //this.el.on("click", (event)=> {
             event.preventDefault();
             if (this.followState === "followed") {
                 this.followState = 'unfollowing';
@@ -84,7 +93,7 @@ class FollowToggle {
                         toggled.render();
                     })
             }  
-        })
+        //})
         // event.preventDefault();
         // if (this.followState === "Follow!") {
         //     $.ajax({
@@ -106,6 +115,34 @@ class FollowToggle {
 }
 
 module.exports = FollowToggle
+
+/***/ }),
+
+/***/ "./frontend/user_search.js":
+/*!*********************************!*\
+  !*** ./frontend/user_search.js ***!
+  \*********************************/
+/***/ ((module) => {
+
+class UserSearch {
+    constructor(el){
+        this.el = $(el)
+        this.ul = $(".users")
+        this.input = $(".user-input")
+        this.input.oninput = handleInput()
+    }
+
+    handleInput(){
+        const typed = this
+        APIUtil.searchUsers(typed.input)
+
+    }
+
+
+
+}
+
+module.exports = UserSearch;
 
 /***/ })
 
@@ -140,12 +177,16 @@ module.exports = FollowToggle
   !*** ./frontend/twitter.js ***!
   \*****************************/
 const FollowToggle = __webpack_require__(/*! ./follow_toggle */ "./frontend/follow_toggle.js")
+const UserSearch = __webpack_require__(/*! ./user_search */ "./frontend/user_search.js")
 
 
 $(() => {
     $(".follow-toggle").each((index, button) => {
-        debugger
         new FollowToggle(button);
+    })
+
+    $(".user-search").each((index, button) => {
+        new UserSearch(button);
     })
 })
 })();
