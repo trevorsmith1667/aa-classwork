@@ -7,7 +7,7 @@ $(() => {
         new FollowToggle(button);
     })
 
-    $(".user-search").each((index, button) => {
-        new UserSearch(button);
+    $(".users-search").each((index, nav) => {
+        new UserSearch(nav);
     })
 })

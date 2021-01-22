@@ -25,11 +25,11 @@ const APIUtil = {
         })
     },
 
-    searchUsers: queryVal => {
+    searchUsers: query => {
         return $.ajax({
             url: '/users/search',
             dataType: 'JSON',
-            data: queryVal,
+            data: {query},
             method: 'GET'
         })
     }
@@ -125,19 +125,22 @@ module.exports = FollowToggle
   \*********************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-const FollowToggle = __webpack_require__(/*! ./follow_toggle */ "./frontend/follow_toggle.js");
+// const FollowToggle = require("./follow_toggle");
+const APIUtil = __webpack_require__(/*! ./api_util */ "./frontend/api_util.js");
 
 class UserSearch {
     constructor(el){
         this.el = $(el)
         this.ul = $(".users")
         this.input = $(".user-input")
-        this.input.oninput = handleInput()
+        console.log(this.input)
+        this.input.on('input', this.handleInput.bind(this))
     }
 
     handleInput(){
+        console.log('in handleInput');
         const typed = this;
-        APIUtil.searchUsers(typed.input).then((users) => this.renderResults(users));
+        APIUtil.searchUsers(this.input.val()).then((users) => this.renderResults(users));
     }
 
     renderResults(users) {
@@ -146,12 +149,13 @@ class UserSearch {
 
         for (let i = 0; i < users.length; i++) {
             const user = users[i];
-            let tag = $(`<a href='user_url(${user})'></a>`);
-            let list = $("<li></li>")
-            let button = $(".follow-toggle")
-            new FollowToggle(button)
-            let tagged = list.append(tag).append(button);
-            this.ul.append(tagged);
+            console.log(user);
+            // let tag = $(`<a href='user_url(${user})'></a>`);
+            // let list = $("<li></li>")
+            // // let button = $(".follow-toggle")
+            // // new FollowToggle(button)
+            // let tagged = list.append(tag);
+            // this.ul.append(tagged);
 
         }
     }
@@ -200,8 +204,8 @@ $(() => {
         new FollowToggle(button);
     })
 
-    $(".user-search").each((index, button) => {
-        new UserSearch(button);
+    $(".users-search").each((index, nav) => {
+        new UserSearch(nav);
     })
 })
 })();
