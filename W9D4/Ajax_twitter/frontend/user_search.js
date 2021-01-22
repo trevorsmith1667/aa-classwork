@@ -1,3 +1,5 @@
+const FollowToggle = require("./follow_toggle");
+
 class UserSearch {
     constructor(el){
         this.el = $(el)
@@ -8,7 +10,7 @@ class UserSearch {
 
     handleInput(){
         const typed = this;
-        APIUtil.searchUsers(typed.input).then(() => {});
+        APIUtil.searchUsers(typed.input).then((users) => this.renderResults(users));
     }
 
     renderResults(users) {
@@ -19,8 +21,11 @@ class UserSearch {
             const user = users[i];
             let tag = $(`<a href='user_url(${user})'></a>`);
             let list = $("<li></li>")
-            let tagged = list.append(tag);
+            let button = $(".follow-toggle")
+            new FollowToggle(button)
+            let tagged = list.append(tag).append(button);
             this.ul.append(tagged);
+
         }
     }
 }
