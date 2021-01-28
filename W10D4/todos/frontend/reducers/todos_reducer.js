@@ -1,4 +1,4 @@
-import {RECEIVE_TODOS, RECEIVE_TODO} from '../actions/todo_actions'
+import {RECEIVE_TODOS, RECEIVE_TODO, REMOVE_TODO} from '../actions/todo_actions'
 
 const initialState = {
     1: {
@@ -32,7 +32,12 @@ const todosReducer = (state = initialState, action) => {
         // Make a new object setting a single key value pair for action.todo
         // Return a new state object by merging your previous state and your
         // new object
-        return nextState
+            return nextState
+        case REMOVE_TODO:
+            // state.filter((todo) => todo.id !== action.id)
+            debugger
+            nextState[action.todo.id] = {}
+            return nextState
         default:
             return state;
     }

@@ -90,17 +90,20 @@
 /*!******************************************!*\
   !*** ./frontend/actions/todo_actions.js ***!
   \******************************************/
-/*! exports provided: RECEIVE_TODOS, RECEIVE_TODO, receiveTodos, receiveTodo */
+/*! exports provided: RECEIVE_TODOS, RECEIVE_TODO, REMOVE_TODO, receiveTodos, receiveTodo, removeTodo */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TODOS", function() { return RECEIVE_TODOS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TODO", function() { return RECEIVE_TODO; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_TODO", function() { return REMOVE_TODO; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveTodos", function() { return receiveTodos; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveTodo", function() { return receiveTodo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeTodo", function() { return removeTodo; });
 var RECEIVE_TODOS = "RECEIVE_TODOS";
 var RECEIVE_TODO = "RECEIVE_TODO";
+var REMOVE_TODO = "REMOVE_TODO";
 var receiveTodos = function receiveTodos(todos) {
   return {
     type: RECEIVE_TODOS,
@@ -110,6 +113,12 @@ var receiveTodos = function receiveTodos(todos) {
 var receiveTodo = function receiveTodo(todo) {
   return {
     type: RECEIVE_TODO,
+    todo: todo
+  };
+};
+var removeTodo = function removeTodo(todo) {
+  return {
+    type: REMOVE_TODO,
     todo: todo
   };
 };
@@ -183,6 +192,12 @@ var todosReducer = function todosReducer() {
 
       return nextState;
 
+    case _actions_todo_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_TODO"]:
+      // state.filter((todo) => todo.id !== action.id)
+      debugger;
+      nextState[action.todo.id] = {};
+      return nextState;
+
     default:
       return state;
   }
@@ -231,7 +246,8 @@ __webpack_require__.r(__webpack_exports__);
 document.addEventListener("DOMContentLoaded", function () {
   window.store = Object(_store_store__WEBPACK_IMPORTED_MODULE_0__["default"])();
   window.receiveTodo = _actions_todo_actions__WEBPACK_IMPORTED_MODULE_1__["receiveTodo"];
-  window.receiveTodos = _actions_todo_actions__WEBPACK_IMPORTED_MODULE_1__["receiveTodos"]; // Creates Store for us
+  window.receiveTodos = _actions_todo_actions__WEBPACK_IMPORTED_MODULE_1__["receiveTodos"];
+  window.removeTodos = _actions_todo_actions__WEBPACK_IMPORTED_MODULE_1__["removeTodo"]; // Creates Store for us
 });
 
 /***/ }),
