@@ -90,23 +90,23 @@
 /*!******************************************!*\
   !*** ./frontend/actions/todo_actions.js ***!
   \******************************************/
-/*! exports provided: RECEIVE_TODOS, RECEIVE_TODO */
+/*! exports provided: RECEIVE_TODOS, RECEIVE_TODO, receiveTodos, receiveTodo */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TODOS", function() { return RECEIVE_TODOS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TODO", function() { return RECEIVE_TODO; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveTodos", function() { return receiveTodos; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveTodo", function() { return receiveTodo; });
 var RECEIVE_TODOS = "RECEIVE_TODOS";
 var RECEIVE_TODO = "RECEIVE_TODO";
-
 var receiveTodos = function receiveTodos(todos) {
   return {
     type: RECEIVE_TODOS,
     todos: todos
   };
 };
-
 var receiveTodo = function receiveTodo(todo) {
   return {
     type: RECEIVE_TODO,
@@ -165,15 +165,23 @@ var initialState = {
 var todosReducer = function todosReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+  var nextState = Object.assign({}, state);
 
   switch (action.type) {
     case _actions_todo_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_TODOS"]:
-      // return the todos from the action
-      return;
+      action.todos.forEach(function (todo) {
+        nextState[todo.id] = todo;
+      });
+      return nextState;
+    // return the todos from the action
 
-    case _actions_todo_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_TODO"]: // Make a new object setting a single key value pair for action.todo
-    // Return a new state object by merging your previous state and your
-    // new object
+    case _actions_todo_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_TODO"]:
+      nextState[action.todo.id] = action.todo; // Make a new object setting a single key value pair for action.todo
+      // Return a new state object by merging your previous state and your
+      // new object
+
+      return nextState;
 
     default:
       return state;
@@ -217,9 +225,13 @@ var configureStore = function configureStore() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./store/store */ "./frontend/store/store.js");
+/* harmony import */ var _actions_todo_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./actions/todo_actions */ "./frontend/actions/todo_actions.js");
+
 
 document.addEventListener("DOMContentLoaded", function () {
-  window.store = Object(_store_store__WEBPACK_IMPORTED_MODULE_0__["default"])(); // Creates Store for us
+  window.store = Object(_store_store__WEBPACK_IMPORTED_MODULE_0__["default"])();
+  window.receiveTodo = _actions_todo_actions__WEBPACK_IMPORTED_MODULE_1__["receiveTodo"];
+  window.receiveTodos = _actions_todo_actions__WEBPACK_IMPORTED_MODULE_1__["receiveTodos"]; // Creates Store for us
 });
 
 /***/ }),
