@@ -34,9 +34,20 @@ const todosReducer = (state = initialState, action) => {
         // new object
             return nextState
         case REMOVE_TODO:
-            // state.filter((todo) => todo.id !== action.id)
+            //  return Object.assign({}, state, {
+            //     todo: Object.keys(state.todo).reduce((result, key) => {
+            //         if (key !== todo.id) {
+            //             result[key] = state.todo[key];
+            //         }
+            //         return result;
+            //     }, {})
+            // });
+            // state.filter((todo) => todo.id !== action.todo.id)
+            //const ids = Object.values(state.todo.id.byId)
+           // nextState[action.todo.id] = {}
             debugger
-            nextState[action.todo.id] = {}
+            nextState[action.todo.id] = action.todo
+            delete nextState[todo.id]
             return nextState
         default:
             return state;

@@ -6,6 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
     window.store = configureStore(); 
     window.receiveTodo = receiveTodo
     window.receiveTodos = receiveTodos
-    window.removeTodos = removeTodo
+    window.removeTodo = removeTodo
     // Creates Store for us
 })

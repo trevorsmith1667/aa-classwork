@@ -193,9 +193,20 @@ var todosReducer = function todosReducer() {
       return nextState;
 
     case _actions_todo_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_TODO"]:
-      // state.filter((todo) => todo.id !== action.id)
+      //  return Object.assign({}, state, {
+      //     todo: Object.keys(state.todo).reduce((result, key) => {
+      //         if (key !== todo.id) {
+      //             result[key] = state.todo[key];
+      //         }
+      //         return result;
+      //     }, {})
+      // });
+      // state.filter((todo) => todo.id !== action.todo.id)
+      //const ids = Object.values(state.todo.id.byId)
+      // nextState[action.todo.id] = {}
       debugger;
-      nextState[action.todo.id] = {};
+      nextState[action.todo.id] = action.todo;
+      delete nextState[todo.id];
       return nextState;
 
     default:
@@ -247,7 +258,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.store = Object(_store_store__WEBPACK_IMPORTED_MODULE_0__["default"])();
   window.receiveTodo = _actions_todo_actions__WEBPACK_IMPORTED_MODULE_1__["receiveTodo"];
   window.receiveTodos = _actions_todo_actions__WEBPACK_IMPORTED_MODULE_1__["receiveTodos"];
-  window.removeTodos = _actions_todo_actions__WEBPACK_IMPORTED_MODULE_1__["removeTodo"]; // Creates Store for us
+  window.removeTodo = _actions_todo_actions__WEBPACK_IMPORTED_MODULE_1__["removeTodo"]; // Creates Store for us
 });
 
 /***/ }),
