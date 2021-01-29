@@ -1,11 +1,14 @@
 
 import configureStore from './store/store';
-import {receiveTodo, receiveTodos, removeTodo} from "./actions/todo_actions"
+import * as todoActions from "./actions/todo_actions"
+import  * as stepActions from "./actions/todo_actions"
+import React from 'react'
+import ReactDOM from 'react-dom'
 
 document.addEventListener("DOMContentLoaded", () => {
     window.store = configureStore(); 
-    window.receiveTodo = receiveTodo
-    window.receiveTodos = receiveTodos
-    window.removeTodo = removeTodo
+    window.todoActions = todoActions
+    window.stepActions = stepActions
+   
     // Creates Store for us
 })
