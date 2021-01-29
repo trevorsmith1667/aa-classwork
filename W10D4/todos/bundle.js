@@ -179,10 +179,11 @@ var todosReducer = function todosReducer() {
 
   switch (action.type) {
     case _actions_todo_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_TODOS"]:
+      var newTodos = {};
       action.todos.forEach(function (todo) {
-        nextState[todo.id] = todo;
+        newTodos[todo.id] = todo;
       });
-      return nextState;
+      return newTodos;
     // return the todos from the action
 
     case _actions_todo_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_TODO"]:
@@ -193,20 +194,7 @@ var todosReducer = function todosReducer() {
       return nextState;
 
     case _actions_todo_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_TODO"]:
-      //  return Object.assign({}, state, {
-      //     todo: Object.keys(state.todo).reduce((result, key) => {
-      //         if (key !== todo.id) {
-      //             result[key] = state.todo[key];
-      //         }
-      //         return result;
-      //     }, {})
-      // });
-      // state.filter((todo) => todo.id !== action.todo.id)
-      //const ids = Object.values(state.todo.id.byId)
-      // nextState[action.todo.id] = {}
-      debugger;
-      nextState[action.todo.id] = action.todo;
-      delete nextState[todo.id];
+      delete nextState[action.todo.id];
       return nextState;
 
     default:

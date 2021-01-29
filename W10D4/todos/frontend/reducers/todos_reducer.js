@@ -21,34 +21,22 @@ const todosReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case RECEIVE_TODOS:
+            const newTodos = {};
             action.todos.forEach((todo) => {
-               nextState[todo.id] = todo
+               newTodos[todo.id] = todo;
 
             })
-            return nextState;
+            return newTodos;
         // return the todos from the action
         case RECEIVE_TODO:
-            nextState[action.todo.id] = action.todo
+            nextState[action.todo.id] = action.todo;
         // Make a new object setting a single key value pair for action.todo
         // Return a new state object by merging your previous state and your
         // new object
             return nextState
         case REMOVE_TODO:
-            //  return Object.assign({}, state, {
-            //     todo: Object.keys(state.todo).reduce((result, key) => {
-            //         if (key !== todo.id) {
-            //             result[key] = state.todo[key];
-            //         }
-            //         return result;
-            //     }, {})
-            // });
-            // state.filter((todo) => todo.id !== action.todo.id)
-            //const ids = Object.values(state.todo.id.byId)
-           // nextState[action.todo.id] = {}
-            debugger
-            nextState[action.todo.id] = action.todo
-            delete nextState[todo.id]
-            return nextState
+            delete nextState[action.todo.id];
+            return nextState;
         default:
             return state;
     }
