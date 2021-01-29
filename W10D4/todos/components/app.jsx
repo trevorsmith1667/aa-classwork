@@ -1,11 +1,13 @@
 import React from 'react'
-import { Provider } from 'react-redux'
 
 const App = () => {
     return (
+        <>
+            <h1>Todos</h1>
+        </>
         
     )
 
 }
 
-export default Root
+export default App

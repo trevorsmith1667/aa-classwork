@@ -1,4 +1,4 @@
-import { RECEIVE_STEPS, RECEIVE_STEP, REMOVE_STEP } from '../action/step_actions'
+import { RECEIVE_STEPS, RECEIVE_STEP, REMOVE_STEP } from '../actions/step_actions'
 
 const initialState = {
   1: {
