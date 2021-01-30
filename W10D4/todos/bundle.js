@@ -150,10 +150,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var TodoListItem = function TodoListItem(props) {
-  debugger;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, props.todos.map(function (todo) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "title: ", todo.title);
-  }));
+  // debugger
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "title: ", props.todo.title));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (TodoListItem);
@@ -176,8 +174,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var TodoList = function TodoList(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_todo_list_todo_list_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    props: props
+  // debugger
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, props.todos.map(function (todo) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_todo_list_todo_list_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      key: todo.id,
+      todo: todo
+    });
   }));
 };
 

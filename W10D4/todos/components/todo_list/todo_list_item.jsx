@@ -1,14 +1,11 @@
 import React from 'react'
 
 const TodoListItem = (props) => {
-    debugger
+  // debugger
   return(
 
       <>
-        {props.todos.map((todo) => (
-
-          <li>title: {todo.title}</li>
-        ))}
+          <li>title: {props.todo.title}</li>
       </>
   )
 };
