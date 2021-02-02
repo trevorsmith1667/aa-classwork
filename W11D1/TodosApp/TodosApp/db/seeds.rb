@@ -9,6 +9,6 @@
 # ActiveRecord::Base.transaction do 
   Todo.destroy_all
   todo1 = Todo.create(title: "todo1", body: "hello, world", done: "true")
-  todo2 = Todo.create(title: "todo2", body: "hello, Trevor", done: "false")
-  todo3 = Todo.create(title: "todo3", body: "hello, Lena", done: "fasle")
+  todo2 = Todo.create(title: "todo2", body: "hello, Trevor", done: true )
+  todo3 = Todo.create(title: "todo3", body: "hello, Lena", done: true)
 # end
