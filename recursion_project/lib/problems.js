@@ -17,6 +17,10 @@
 // lucasNumber(5)   // => 11
 // lucasNumber(9)   // => 76
 function lucasNumber(n) {
+    if (n === 0) return 2;
+    if (n === 1) return 1;
+
+    return lucasNumber(n - 1) + lucasNumber(n -2)
 
 }
 
@@ -33,6 +37,11 @@ function lucasNumber(n) {
 // sumArray([5, 2])         // => 7
 // sumArray([4, 10, -1, 2]) // => 15
 function sumArray(array) {
+    if (array.length === 0) return 0;
+   let first =  array[0]
+   let rest = array.slice(1);
+   return first + sumArray(rest);
+
 
 }
 
@@ -49,6 +58,8 @@ function sumArray(array) {
 // reverseString("internet")    // => "tenretni"
 // reverseString("friends")     // => "sdneirf"
 function reverseString(str) {
+    if (str.length === 0) return "";
+    
 
 }
 
