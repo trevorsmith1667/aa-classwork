@@ -82,6 +82,7 @@ function reverseString(str) {
 // pow(2, -5)   // => 0.03125
 function pow(base, exponent) {
     if (exponent === 0) return 1;
+    if (exponent < 0) return 1 / pow(base, -exponent);
     
     return pow(base, exponent - 1) * base
 
@@ -117,6 +118,14 @@ function pow(base, exponent) {
 //     2-dimensional array: [['some data']]
 //     3-dimensional array: [[['some data']]]
 function flatten(data) {
+    if (!Array.isArray(data)) return [data];
+
+    let flattened = [];
+
+        data.forEach((ele) => {
+            flattened.push(...flatten(ele));
+        })
+    return flattened;
 
 }
 
