@@ -21,15 +21,31 @@
 // stepper([3, 4, 1, 0, 10]);           // => true, because we can step through elements 3 -> 4 -> 10
 // stepper([2, 3, 1, 1, 0, 4, 7, 8])    // => false, there is no way to step to the end
 function stepper(nums) {
+    // if (nums.length in memo) return memo[nums.length];
+    // if (nums.length === 0) return true;
+
+    // let range = nums[0];
+    // for(let step = 1; step <= range; step++){
+    //    if (stepper(nums.slice(step), memo)){
+    //        memo[nums.length] = true;
+    //        return true;
+    //    };
+    // }
+    // memo[nums.length] = false;
+    // return false 
     let table = new Array(nums.length).fill(false);
     table[0] = true;
 
     for (let i = 0; i < table.length; i++){
         if (table[i] === true){
+            let range = nums[i];
+            for (let j = 1; j <= range; j++){
+                table[j] = true;
+            }
             
         }
     }
-
+    return table[table.length - 1];
 }
 
 
@@ -44,7 +60,17 @@ function stepper(nums) {
 // maxNonAdjacentSum([2, 7, 9, 3, 4])   // => 15, because 2 + 9 + 4
 // maxNonAdjacentSum([4,2,1,6])         // => 10, because 4 + 6 
 function maxNonAdjacentSum(nums) {
+    if (nums.length === 0) return 0;
+    let table = new Array(nums.length).fill(0);
+    table[0] = nums[0];
 
+    for (let i = 1; i < table.length; i++){
+        let skipStepLeft = table[i -2] === undefined ? 0 : table[i - 2];
+        let includeNum =  skipStepLeft + nums[i];
+        let notInclude = table[i - 1];
+        table[i] = Math.max(includeNum, notInclude);
+    }
+    return table[table.length - 1]
 }
 
 
